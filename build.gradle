@@ -25,21 +25,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
-	/***** log4j설정 *****/
-	implementation 'log4j:log4j:1.2.17'
-	/***** BasicDataSource설정 *****/
-	implementation 'org.apache.commons:commons-dbcp2:2.9.0'
-	/***** mybatis설정 *****/
-	implementation 'org.mybatis:mybatis:3.5.15'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1'
-	/***** log4j설정 *****/
-	implementation 'log4j:log4j:1.2.17'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 }
 
 tasks.named('test') {
