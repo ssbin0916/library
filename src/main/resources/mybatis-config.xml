@@ -23,17 +23,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper class="com.project.library.domain.member.MemberMapper" />
-		<mapper class="com.project.library.domain.book.BookMapper" />
-		<mapper class="com.project.library.domain.loan.LoanMapper" />
+		<mapper class="com.project.library.mapper.member.MemberMapper" />
+		<mapper class="com.project.library.mapper.book.BookMapper" />
+		<mapper class="com.project.library.mapper.loan.LoanMapper" />
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
