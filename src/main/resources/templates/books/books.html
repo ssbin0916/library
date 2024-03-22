@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>책 목록</title>
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>책 목록</h2>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    th:onclick="|location.href='@{/books/add}'|"
+                    type="button">책 등록
+            </button>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>제목</th>
+                <th>저자</th>
+                <th>장르</th>
+                <th>대여</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}">제목</td>
+                <td th:text="${book.author}">저자</td>
+                <td th:text="${book.category}">장르</td>
+                <td>
+                    <form th:action="@{/books/new}" method="post">
+                        <input type="hidden" name="bookId" th:value="${book.id}">
+                        <button type="submit" class="btn btn-success btn-sm">대여하기</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
