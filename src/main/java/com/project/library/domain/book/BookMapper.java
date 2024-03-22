@@ -1,9 +1,10 @@
-package com.project.library.mapper.book;
+package com.project.library.domain.book;
 
 import com.project.library.domain.book.Book;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface BookMapper {
@@ -19,7 +20,7 @@ public interface BookMapper {
     Book findById(Long id);
 
     @Select("SELECT * FROM book WHERE title = #{title}")
-    Book findByTitle(String title);
+    Optional<Book> findByTitle(String title);
 
     @Update("UPDATE book SET" +
             "title = #{title}," +

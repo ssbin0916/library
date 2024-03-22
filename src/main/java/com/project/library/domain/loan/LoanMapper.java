@@ -1,4 +1,4 @@
-package com.project.library.mapper.loan;
+package com.project.library.domain.loan;
 
 import com.project.library.domain.loan.Loan;
 import org.apache.ibatis.annotations.Insert;

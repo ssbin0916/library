@@ -1,26 +1,17 @@
 package com.project.library.domain.member;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 public class Member {
 
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "아이디를 입력하세요")
     private String loginId;
-    @NotEmpty
+    @NotEmpty(message = "비밀번호를 입력하세요")
     private String password;
-    @NotEmpty
+    @NotEmpty(message = "이름을 입력하세요")
     private String name;
-    @NotEmpty
-    private String phone;
-    @NotEmpty
-    @Email
-    private String email;
-    @NotEmpty
-    private String birthDate;
 }
