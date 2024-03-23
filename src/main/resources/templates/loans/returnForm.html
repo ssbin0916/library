@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>책 반납</title>
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>책 반납</h2>
+    </div>
+    <form th:action="@{/loans/{id}/return}" method="post">
+        <div class="mb-3">
+            <label for="loanId" class="form-label">대여 번호</label>
+            <input type="text" class="form-control" id="loanId" name="loanId">
+        </div>
+        <button type="submit" class="btn btn-warning">반납하기</button>
+    </form>
+</div>
+</body>
+</html>
