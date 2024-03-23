@@ -1,6 +1,5 @@
 package com.project.library.domain.loan;
 
-import com.project.library.domain.loan.Loan;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
