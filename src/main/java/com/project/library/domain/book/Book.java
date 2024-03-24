@@ -16,5 +16,5 @@ public class Book {
     @NotNull(message = "장르 입력은 필수입니다.")
     private Category category;
 
-    private String isRented;
+    private boolean isRented;
 }
