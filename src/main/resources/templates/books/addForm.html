@@ -15,19 +15,14 @@
     </style>
 </head>
 <body>
-
 <div class="container">
-
     <div class="py-5 text-center">
         <h2>책 등록</h2>
     </div>
-
     <form action="book.html" th:action th:object="${book}" method="post">
-
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
         </div>
-
         <div>
             <label for="title">제목</label>
             <input type="text" id="title" th:field="*{title}"
@@ -54,9 +49,7 @@
             </select>
             <div class="field-error" th:errors="*{category}">장르 오류</div>
         </div>
-
         <hr class="my-4">
-
         <div class="row">
             <div class="col">
                 <button class="w-100 btn btn-primary btn-lg" type="submit">등록</button>
@@ -65,12 +58,11 @@
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='books.html'"
                         th:onclick="|location.href='@{/books/books}'|"
-                        type="button">취소</button>
+                        type="button">취소
+                </button>
             </div>
         </div>
-
     </form>
-
-</div> <!-- /container -->
+</div>
 </body>
 </html>

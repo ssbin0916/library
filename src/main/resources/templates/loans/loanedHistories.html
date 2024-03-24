@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .center-content {
+          margin: 0 auto;
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container center-content" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h3>대여한 책 목록</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>제목</th>
+                <th>저자</th>
+                <th>장르</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}">제목</td>
+                <td th:text="${book.author}">저자</td>
+                <td th:text="${book.category}">장르</td>
+                <td>
+                    <form th:action="@{/books/{id}/return(bookId=${book.id})}" method="post">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr class="my-4">
+        <a class="btn btn-primary" href="/" role="button">홈으로 돌아가기</a>
+    </div>
+</div>
+</body>
+</html>

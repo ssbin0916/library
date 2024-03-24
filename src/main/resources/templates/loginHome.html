@@ -11,18 +11,17 @@
     </div>
     <div class="d-flex justify-content-between align-items-center">
         <h4 class="mb-3" th:text="|${member.name} 님 안녕하세요.|">로그인 사용자 이름</h4>
-        <button class="btn btn-secondary" type="button" th:onclick="|location.href='@{/members/info}'|">내 정보</button>
     </div>
     <hr class="my-4">
     <div class="row">
         <div class="col-6">
             <button class="w-100 btn btn-success btn-lg" type="button" th:onclick="|location.href='@{/books/books}'|">
-                책 대여
+                책 목록
             </button>
         </div>
         <div class="col-6">
-            <button class="w-100 btn btn-warning btn-lg" type="button" th:onclick="|location.href='@{/books/returns}'|">
-                책 반납
+            <button class="w-100 btn btn-warning btn-lg" type="button" th:onclick="|location.href='@{/loans/histories}'|">
+                대여 기록
             </button>
         </div>
         <div class="col-12 mt-3">

@@ -2,6 +2,9 @@ package com.project.library.web.book;
 
 import com.project.library.domain.book.Book;
 import com.project.library.domain.book.BookMapper;
+import com.project.library.domain.loan.LoanMapper;
+import com.project.library.domain.member.Member;
+import com.project.library.web.SessionConst;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import java.util.Optional;
 public class BookController {
 
     private final BookMapper bookMapper;
+    private final LoanMapper loanMapper;
 
     @GetMapping("/books")
     public String books(Model model) {
@@ -59,5 +63,25 @@ public class BookController {
     public String deleteBook(@PathVariable("id") Long id) {
         bookMapper.delete(id);
         return "redirect:/books/books";
+    }
+
+    @PostMapping("rent/{bookId}")
+    public String rentBook(@PathVariable("bookId") Long bookId, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember) {
+        if (loginMember == null) {
+            return "redirect:/login";
+        }
+        loanMapper.rentBook(bookId, loginMember.getId());
+        loanMapper.isRented(bookId);
+        return "redirect:/books";
+    }
+
+    @PostMapping("return/{bookId}")
+    public String returnBook(@PathVariable("bookId") Long bookId, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember) {
+        if (loginMember == null) {
+            return "redirect:/login";
+        }
+        loanMapper.returnBook(bookId, loginMember.getId());
+        loanMapper.isReturned(bookId);
+        return "redirect:/books";
     }
 }

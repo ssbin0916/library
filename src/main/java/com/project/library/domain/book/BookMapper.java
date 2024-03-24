@@ -29,6 +29,6 @@ public interface BookMapper {
             "WHERE id = #{id}")
     int update(Book book);
 
-    @Delete("DELETE book WHERE id = #{id}")
-    int delete(Long id);
+    @Delete("DELETE FROM book WHERE id = #{id}")
+    void delete(Long id);
 }

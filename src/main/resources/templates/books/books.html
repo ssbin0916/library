@@ -26,6 +26,7 @@
                 <th>저자</th>
                 <th>장르</th>
                 <th>대여</th>
+                <th>삭제</th>
             </tr>
             </thead>
             <tbody>
@@ -34,14 +35,24 @@
                 <td th:text="${book.author}">저자</td>
                 <td th:text="${book.category}">장르</td>
                 <td>
-                    <form th:action="@{/books/new}" method="post">
-                        <input type="hidden" name="bookId" th:value="${book.id}">
+                    <form th:action="@{/loans/rent/{bookId}(bookId=${book.id})}" method="post" th:unless="${book.isRented}">
                         <button type="submit" class="btn btn-success btn-sm">대여하기</button>
+                    </form>
+                    <form th:action="@{/loans/return/{bookId}(bookId=${book.id})}" method="post" th:if="${book.isRented}">
+                        <button type="submit" class="btn btn-warning btn-sm">반납하기</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger btn-sm">삭제하기</button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
+        <hr class="my-4">
+        <a class="btn btn-primary" href="/" role="button">홈 화면</a>
     </div>
 </div>
 </body>
