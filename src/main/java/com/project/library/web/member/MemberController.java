@@ -1,15 +1,16 @@
 package com.project.library.web.member;
 
+import com.project.library.domain.loan.LoanMapper;
 import com.project.library.domain.member.Member;
 import com.project.library.domain.member.MemberMapper;
-import com.project.library.web.SessionConst;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberMapper memberMapper;
+    private final LoanMapper loanMapper;
 
     @GetMapping("/add")
     public String joinForm(@ModelAttribute("member") Member member) {
@@ -40,15 +42,5 @@ public class MemberController {
         memberMapper.insert(member);
         return "redirect:/";
     }
-
-    @GetMapping("/info")
-    public String memberInfo(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
-        model.addAttribute("member", loginMember);
-        return "members/memberInfo";
-    }
-
 
 }
