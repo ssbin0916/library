@@ -51,7 +51,13 @@ public class BookController {
         }
 
         bookMapper.insert(book);
-        return "redirect:/";
+        return "redirect:/books/books";
 
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteBook(@PathVariable("id") Long id) {
+        bookMapper.delete(id);
+        return "redirect:/books/books";
     }
 }
