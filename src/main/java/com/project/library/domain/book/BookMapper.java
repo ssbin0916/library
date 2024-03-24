@@ -1,6 +1,5 @@
 package com.project.library.domain.book;
 
-import com.project.library.domain.book.Book;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
