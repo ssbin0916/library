@@ -14,4 +14,7 @@ public class Member {
     private String password;
     @NotEmpty(message = "이름을 입력하세요")
     private String name;
+
+    @NotEmpty(message = "비밀번호 확인을 입력하세요")
+    private String confirmPassword;
 }

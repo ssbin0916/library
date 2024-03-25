@@ -39,6 +39,11 @@ public class MemberController {
             return "members/joinForm";
         }
 
+        if (!member.getPassword().equals(member.getConfirmPassword())) {
+            bindingResult.rejectValue("confirmPassword", "password.mismatch", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            return "members/joinForm";
+        }
+
         memberMapper.insert(member);
         return "redirect:/";
     }
