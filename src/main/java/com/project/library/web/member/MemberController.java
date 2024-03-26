@@ -1,6 +1,5 @@
 package com.project.library.web.member;
 
-import com.project.library.domain.loan.LoanMapper;
 import com.project.library.domain.member.Member;
 import com.project.library.domain.member.MemberMapper;
 import jakarta.validation.Valid;
@@ -20,7 +19,6 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberMapper memberMapper;
-    private final LoanMapper loanMapper;
 
     @GetMapping("/add")
     public String joinForm(@ModelAttribute("member") Member member) {
