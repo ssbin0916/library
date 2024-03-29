@@ -8,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -20,7 +18,6 @@ import java.util.List;
 public class LoanController {
 
     private final LoanMapper loanMapper;
-    private static final Logger logger = LoggerFactory.getLogger(LoanController.class);
 
     @PostMapping("rent/{bookId}")
     public String rentBook(@PathVariable("bookId") Long bookId, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember) {
@@ -55,7 +52,6 @@ public class LoanController {
 
     @PostMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
-        logger.info("Deleting loan with id: {}", id);
         loanMapper.delete(id);
         return "redirect:/loans/histories";
     }
