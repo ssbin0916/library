@@ -2,6 +2,7 @@ package com.project.library.web.book;
 
 import com.project.library.domain.book.Book;
 import com.project.library.domain.book.BookMapper;
+import com.project.library.domain.member.Member;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,10 +20,21 @@ public class BookController {
 
     private final BookMapper bookMapper;
 
+//    @GetMapping("/books")
+//    public String books(Model model) {
+//        List<Book> books = bookMapper.findAll();
+//        model.addAttribute("books", books);
+//        return "books/books";
+//    }
+
     @GetMapping("/books")
-    public String books(Model model) {
+    public String books(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember) {
         List<Book> books = bookMapper.findAll();
         model.addAttribute("books", books);
+
+        // 현재 로그인한 회원 정보를 모델에 추가합니다.
+        model.addAttribute("member", loginMember);
+
         return "books/books";
     }
 

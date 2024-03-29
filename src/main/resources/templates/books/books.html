@@ -12,9 +12,8 @@
     </div>
     <div class="row mb-3">
         <div class="col">
-            <button class="btn btn-primary float-end"
-                    th:onclick="|location.href='@{/books/add}'|"
-                    type="button">책 등록
+            <button th:if="${#strings.equals(member.loginId, 'admin')}" class="btn btn-primary float-end"
+                    th:onclick="|location.href='@{/books/add}'|" type="button">책 등록
             </button>
         </div>
     </div>
@@ -26,7 +25,7 @@
                 <th>저자</th>
                 <th>장르</th>
                 <th>대여/반납</th>
-                <th>삭제</th>
+                <th th:if="${#strings.equals(member.loginId, 'admin')}">삭제</th>
             </tr>
             </thead>
             <tbody>
@@ -35,18 +34,22 @@
                 <td th:text="${book.author}">저자</td>
                 <td th:text="${book.category}">장르</td>
                 <td>
-                    <form th:action="@{/loans/rent/{bookId}(bookId=${book.id})}" method="post" th:if="${!book.isRented}">
+                    <form th:action="@{/loans/rent/{bookId}(bookId=${book.id})}" method="post"
+                          th:if="${!book.isRented}">
                         <button type="submit" class="btn btn-success btn-sm">대여하기</button>
                     </form>
-                    <form th:action="@{/loans/return/{bookId}(bookId=${book.id})}" method="post" th:if="${book.isRented}">
+                    <form th:action="@{/loans/return/{bookId}(bookId=${book.id})}" method="post"
+                          th:if="${book.isRented}">
                         <button type="submit" class="btn btn-warning btn-sm">반납하기</button>
                     </form>
                 </td>
                 <td>
-                    <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
-                        <input type="hidden" name="_method" value="delete"/>
-                        <button type="submit" class="btn btn-danger btn-sm">삭제하기</button>
-                    </form>
+                    <div th:if="${#strings.equals(member.loginId, 'admin')}">
+                        <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="btn btn-danger btn-sm">삭제하기</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             </tbody>
