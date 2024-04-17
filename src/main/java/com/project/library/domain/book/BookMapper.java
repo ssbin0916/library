@@ -19,7 +19,7 @@ public interface BookMapper {
     Book findById(Long id);
 
     @Select("SELECT * FROM book WHERE title = #{title}")
-    Optional<Book> findByTitle(String title);
+    Optional<Book> findByTitle (String title);
 
     @Update("UPDATE book SET" +
             "title = #{title}," +
